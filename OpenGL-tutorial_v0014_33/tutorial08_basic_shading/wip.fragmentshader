@@ -1,0 +1,141 @@
+/*
+ * Bo Sun, Columbia University, All rights reserved
+ * --------------------------------------------------------------------
+ * Permission to use, copy, or modify this software and its documentation
+ * for educational and research purposes only and without fee is hereby
+ * granted.  
+ * --------------------------------------------------------------------
+ * 
+ * March. 2005
+ */
+
+struct frag2app {
+  float4 color : COLOR;
+};
+
+/*auxiliary functions*/
+float A0(float I0, float beta, float Dsv, float gamma)
+{
+	const float PI = 3.1415926535;
+	return (beta*I0*exp(-beta*Dsv*cos(gamma)))/(2*PI*Dsv*sin(gamma));
+}
+float A1(float beta, float Dsv, float gamma)
+{
+	return beta*Dsv*sin(gamma);
+}
+
+/*functions to compute each radiance component seperately*/
+float AirLight(float lightIntensity, 
+		float beta, 
+		float Dsv, 
+		float Dvp, 
+		float gammasv,
+		samplerRECT F,
+		float f_XOffset, 
+		float f_XScale, 
+		float f_YOffset,		
+		float f_YScale)
+{
+	const float PI = 3.1415926535;
+	float u = A1(beta, Dsv, gammasv);
+	float v1 = 0.25*PI+0.5*atan((Dvp-Dsv*cos(gammasv))/(Dsv*sin(gammasv)));
+	float v2 = 0.5*gammasv;
+			
+	float4 f_1=texRECT(F, float2((v1-f_XOffset)*f_XScale, (u-f_YOffset)*f_YScale));
+	float4 f_2=texRECT(F, float2((v2-f_XOffset)*f_XScale, (u-f_YOffset)*f_YScale));
+	return A0(lightIntensity, beta, Dsv, gammasv)*(f_1.x-f_2.x);
+}
+float Diffuse(float lightIntensity, 
+		float beta, 
+		float Kd,
+		float Dsp, 
+		float Dvp, 
+		float thetas,
+		samplerRECT G_0,
+		float g_0XOffset,
+		float g_0XScale, 
+		float g_0YOffset,
+		float g_0YScale)
+{
+	const float PI = 3.1415926535;
+	
+	float t1 = exp(-beta*Dsp)*max(cos(thetas),0)/Dsp;
+	float4 t2 = beta*texRECT(G_0, float2((beta*Dsp-g_0XOffset)*g_0XScale, (thetas-g_0YOffset)*g_0YScale))/(2*PI);
+	return (t1+t2.x)*exp(-beta*Dvp)*Kd*lightIntensity/Dsp;
+}
+float Specular(float lightIntensity, 
+		float beta, 
+		float Ks,	
+		float Dsp, 
+		float Dvp, 	
+		float thetas_,
+		samplerRECT G_20,
+		float g_20XOffset, 
+		float g_20XScale, 
+		float g_20YOffset, 
+		float g_20YScale)
+{
+	const float PI=3.1415926535;
+
+	float t1 = exp(-beta*Dsp)*pow(max(cos(thetas_),0),20)/Dsp;
+	float4 t2 = beta*texRECT(G_20, float2((beta*Dsp-g_20XOffset)*g_20XScale, (thetas_-g_20YOffset)*g_20YScale))/(2*PI);
+	return (t1+t2.x)*exp(-beta*Dvp)*Ks*lightIntensity/Dsp;
+}
+
+/*main function*/
+frag2app fmain( float4 objPos : TEXCOORD3,
+		float3 normal : TEXCOORD4,
+		float4 color : COLOR,
+
+		uniform float3 lightPosition,
+		uniform float3 viewPosition,
+		uniform float lightIntensity,
+		uniform float beta,
+		uniform float Kd,
+		uniform float Ks,
+				
+		uniform samplerRECT F,
+		uniform float f_XOffset,
+		uniform float f_XScale,
+		uniform float f_YOffset,
+		uniform float f_YScale,
+		
+		uniform samplerRECT G_0,
+		uniform float g_0XOffset,
+		uniform float g_0XScale,
+		uniform float g_0YOffset,
+		uniform float g_0YScale,
+		
+		uniform samplerRECT G_20,
+		uniform float g_20XOffset,
+		uniform float g_20XScale,
+		uniform float g_20YOffset,
+		uniform float g_20YScale)
+{
+	beta=4;
+	frag2app OUT;
+	const float PI = 3.1415926535;
+	
+	/*preparing parameters*/
+	float3 N = normalize(normal);
+	float3 V = normalize(objPos.xyz-viewPosition);
+	float3 S = normalize(lightPosition-viewPosition);
+	float3 L = normalize(lightPosition-objPos.xyz);
+	float3 RV = reflect(V, N);
+
+	float Dvp = length(viewPosition-objPos.xyz);
+	float Dsv = length(lightPosition-viewPosition);
+	float Dsp = length(lightPosition-objPos.xyz);
+	float gamma = acos(dot(S, V));
+	float thetas = acos(dot(N, L));
+	float thetas_ = acos(dot(L, RV));
+
+	/*compute airlight, diffuse and specular color seperately using our model in the paper*/
+	float airlight = AirLight(lightIntensity, beta, Dsv, Dvp, gamma, F, f_XOffset,f_XScale, f_YOffset,f_YScale);
+	float diffuse = Diffuse(lightIntensity, beta, Kd, Dsp, Dvp, thetas, G_0, g_0XOffset,g_0XScale, g_0YOffset,g_0YScale);
+	float specular = Specular(lightIntensity, beta, Ks, Dsp, Dvp, thetas_, G_20, g_20XOffset, g_20XScale, g_20YOffset, g_20YScale);
+	
+	/*diffuse color-red, airlight color-white, specular color-white*/
+	OUT.color = float4(diffuse+airlight+specular,specular+airlight,specular+airlight, 0);
+	return OUT;
+}
