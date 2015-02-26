@@ -1,0 +1,90 @@
+// Interpolated values from the vertex shaders
+in vec2 UV;
+in vec3 Position_worldspace;
+in vec3 Normal_cameraspace;
+in vec3 EyeDirection_cameraspace;
+in vec3 LightDirection_cameraspace;
+in vec3 normal;
+
+
+// Ouput data
+out vec3 color;
+
+
+
+// Values that stay constant for the whole mesh.
+uniform sampler2D myTextureSampler;
+uniform mat4 MV;
+uniform vec3 LightPosition_worldspace;
+
+float A0(float I0, float beta, float Dsv, float gamma)
+{
+	const float PI = 3.1415926535;
+	return (beta*I0*exp(-beta*Dsv*cos(gamma)))/(2*PI*Dsv*sin(gamma));
+}
+float A1(float beta, float Dsv, float gamma)
+{
+	return beta*Dsv*sin(gamma);
+}
+/*functions to compute each radiance component seperately*/
+float AirLight(float lightIntensity, 
+		float beta, 
+		float Dsv, 
+		float Dvp, 
+		float gammasv,
+		samplerRECT F,
+		float f_XOffset, 
+		float f_XScale, 
+		float f_YOffset,		
+		float f_YScale)
+{
+	const float PI = 3.1415926535;
+	float u = A1(beta, Dsv, gammasv);
+	float v1 = 0.25*PI+0.5*atan((Dvp-Dsv*cos(gammasv))/(Dsv*sin(gammasv)));
+	float v2 = 0.5*gammasv;
+			
+	float4 f_1=texRECT(F, float2((v1-f_XOffset)*f_XScale, (u-f_YOffset)*f_YScale));
+	float4 f_2=texRECT(F, float2((v2-f_XOffset)*f_XScale, (u-f_YOffset)*f_YScale));
+	return A0(lightIntensity, beta, Dsv, gammasv)*(f_1.x-f_2.x);
+}
+float Diffuse(float lightIntensity, 
+		float beta, 
+		float Kd,
+		float Dsp, 
+		float Dvp, 
+		float thetas,
+		samplerRECT G_0,
+		float g_0XOffset,
+		float g_0XScale, 
+		float g_0YOffset,
+		float g_0YScale)
+{
+	const float PI = 3.1415926535;
+	
+	float t1 = exp(-beta*Dsp)*max(cos(thetas),0)/Dsp;
+	float4 t2 = beta*texRECT(G_0, float2((beta*Dsp-g_0XOffset)*g_0XScale, (thetas-g_0YOffset)*g_0YScale))/(2*PI);
+	return (t1+t2.x)*exp(-beta*Dvp)*Kd*lightIntensity/Dsp;
+}
+float Specular(float lightIntensity, 
+		float beta, 
+		float Ks,	
+		float Dsp, 
+		float Dvp, 	
+		float thetas_,
+		samplerRECT G_20,
+		float g_20XOffset, 
+		float g_20XScale, 
+		float g_20YOffset, 
+		float g_20YScale)
+{
+	const float PI=3.1415926535;
+
+	float t1 = exp(-beta*Dsp)*pow(max(cos(thetas_),0),20)/Dsp;
+	float4 t2 = beta*texRECT(G_20, float2((beta*Dsp-g_20XOffset)*g_20XScale, (thetas_-g_20YOffset)*g_20YScale))/(2*PI);
+	return (t1+t2.x)*exp(-beta*Dvp)*Ks*lightIntensity/Dsp;
+}
+
+void main(){
+
+}
+

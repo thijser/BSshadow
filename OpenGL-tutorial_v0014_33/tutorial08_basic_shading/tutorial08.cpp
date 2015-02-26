@@ -23,6 +23,7 @@ using namespace glm;
 #define vertexshader "StandardShading.vertexshader"
 #define fragmentShader "StandardShading.fragmentshader"
 #define object "suzanne.obj"
+#define uvmap "uvmap.DDS"
 int main( void )
 {
 	// Initialise GLFW
@@ -81,7 +82,7 @@ int main( void )
 	GLuint ModelMatrixID = glGetUniformLocation(programID, "M");
 
 	// Load the texture
-	GLuint Texture = loadDDS("uvmap.DDS");
+	GLuint Texture = loadDDS(uvmap);
 	
 	// Get a handle for our "myTextureSampler" uniform
 	GLuint TextureID  = glGetUniformLocation(programID, "myTextureSampler");
