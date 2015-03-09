@@ -1,0 +1,191 @@
+Base path: C:/Program Files/Unity/Editor/Data
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-7988
+Cmd: getPlatforms
+Cmd: preprocess
+  insize=1577 outsize=237 ok=1
+Cmd: preprocess
+  insize=1576 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1636 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1636 outsize=1583 kw= ok=1
+Cmd: preprocess
+  insize=1586 outsize=237 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (43): undeclared identifier 'Linear01'\nCompiling Vertex program
+  api=4 type=0 insize=1646 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1576 outsize=237 ok=1
+Cmd: preprocess
+  insize=756 outsize=180 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=873 outsize=1428 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=873 outsize=941 kw= ok=1
+Cmd: preprocess
+  insize=1591 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1651 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1651 outsize=1786 kw= ok=1
+Cmd: preprocess
+  insize=741 outsize=180 ok=1
+Cmd: preprocess
+  insize=1576 outsize=237 ok=1
+Cmd: preprocess
+  insize=1636 outsize=237 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (51): undeclared identifier 'coord'\nCompiling Vertex program
+  api=4 type=0 insize=1696 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1637 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1697 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1697 outsize=1136 kw= ok=1
+Cmd: preprocess
+  insize=1703 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1763 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1763 outsize=1339 kw= ok=1
+Cmd: preprocess
+  insize=1718 outsize=237 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (43): undeclared identifier 'LinearDepth01'\nCompiling Vertex program
+  api=4 type=0 insize=1778 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1718 outsize=236 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1778 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1778 outsize=1502 kw= ok=1
+Cmd: preprocess
+  insize=1703 outsize=237 ok=1
+Cmd: preprocess
+  insize=1703 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1763 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1763 outsize=1136 kw= ok=1
+Cmd: preprocess
+  insize=1698 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1758 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1758 outsize=1087 kw= ok=1
+Cmd: preprocess
+  insize=1713 outsize=236 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1773 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1773 outsize=1266 kw= ok=1
+Cmd: preprocess
+  insize=1719 outsize=237 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (52): undeclared identifier 'linearDepth'\nCompiling Vertex program
+  api=4 type=0 insize=1779 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1718 outsize=236 ok=1
+Cmd: preprocess
+  insize=1718 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1778 outsize=1258 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1778 outsize=1518 kw= ok=1
+Cmd: preprocess
+  insize=1718 outsize=236 ok=1
+Cmd: preprocess
+  insize=1576 outsize=237 ok=1
+Cmd: preprocess
+  insize=1654 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1714 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1714 outsize=1136 kw= ok=1
+Cmd: preprocess
+  insize=1650 outsize=237 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (52): incorrect number of arguments to numeric-type constructor\nCompiling Vertex program
+  api=4 type=0 insize=1710 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1647 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1707 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1707 outsize=632 kw= ok=1
+Cmd: preprocess
+  insize=1647 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1707 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1707 outsize=632 kw= ok=1
+Cmd: preprocess
+  insize=1647 outsize=237 ok=1
+Cmd: preprocess
+  insize=1643 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1703 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1703 outsize=592 kw= ok=1
+Cmd: preprocess
+  insize=1650 outsize=236 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1710 outsize=1282 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1710 outsize=592 kw= ok=1
+Cmd: preprocess
+  insize=1648 outsize=236 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1708 outsize=1282 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1708 outsize=1583 kw= ok=1
+Cmd: preprocess
+  insize=1649 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1709 outsize=1282 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1709 outsize=1583 kw= ok=1
+Cmd: preprocess
+  insize=1650 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1710 outsize=1282 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1710 outsize=1583 kw= ok=1
+Cmd: preprocess
+  insize=1663 outsize=237 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (26): type mismatch\nCompiling Vertex program
+  api=4 type=0 insize=1723 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1665 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1725 outsize=1510 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1725 outsize=1583 kw= ok=1
+Cmd: preprocess
+  insize=1774 outsize=348 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1723 outsize=1242 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1723 outsize=1583 kw= ok=1
+Cmd: preprocess
+  insize=1774 outsize=348 ok=1
+Cmd: preprocess
+  insize=1663 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1723 outsize=1510 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1723 outsize=1583 kw= ok=1
+Cmd: preprocess
+  insize=1662 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1722 outsize=1510 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1722 outsize=1583 kw= ok=1
+Cmd: preprocess
+  insize=1661 outsize=237 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1721 outsize=1510 kw= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1721 outsize=1583 kw= ok=1
